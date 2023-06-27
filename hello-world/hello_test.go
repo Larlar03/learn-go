@@ -3,14 +3,38 @@ package main
 import "testing"
 
 func TestHello(t *testing.T) {
-	t.Run("given a name is supplied, print 'hello name'", func(t *testing.T) {
-		got := Hello("Jake Sully")
+	t.Run("print 'Hello, name'", func(t *testing.T) {
+		got := Hello("Jake Sully", "")
 		want := "Hello, Jake Sully"
 		assertCorrectMessage(t, got, want)
 	})
-	t.Run("given no name is supplied, print 'Hello, Pandora'", func(t *testing.T) {
-		got := Hello("")
+	t.Run("print 'Hello, Pandora' when no name is given", func(t *testing.T) {
+		got := Hello("", "")
 		want := "Hello, Pandora"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("print 'Hello, Pandora' in given language", func(t *testing.T) {
+		got := Hello("", "French")
+		want := "Bonjour, Pandora"
+		assertCorrectMessage(t, got, want)
+	})
+
+		t.Run("print 'Hello, name' in given language", func(t *testing.T) {
+		got := Hello("Jake Sully", "French")
+		want := "Bonjour, Jake Sully"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("print 'Hello, Pandora' in given language", func(t *testing.T) {
+		got := Hello("", "Portuguese")
+		want := "Olá, Pandora"
+		assertCorrectMessage(t, got, want)
+	})
+
+		t.Run("print 'Hello, name' in given language", func(t *testing.T) {
+		got := Hello("Jake Sully", "Portuguese")
+		want := "Olá, Jake Sully"
 		assertCorrectMessage(t, got, want)
 	})
 }
